@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>자료구조설계</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <h1>내일로 여행추천 코스를 알려드립니다!!</h1>
+    <h2> 선택가능한 역</h2>
+    <h3>서울	수원	신탄진	청평	가평	남춘천	충주	<br/>
+        제천	단양	영주	안동	태백	신기	동해	정동진<br/>
+        대천	논산	군산	익산	전주	정읍	남원	곡성	<br/>
+        광주	화순	목포	보성	순천	여수	마산	밀양	경주	포항	부산
+    </h3>
+    
+    <!--여행정보 입력받는 곳-->
+    <form action="{{url_for('index')}}" method="post">
+        이용기간 : 
+        
+        <input type="checkbox" name="ticket_day" value="5">5일권 (2개 입력)     
+        <input type="checkbox" name="ticket_day" value="7">7일권 (3개 입력)<br/>
+        시작점: <input type="text" name="station_start"><br/>
+        선택역1: <input type="text" name="station_option1"><br/>
+        선택역2: <input type="text" name="station_option2"><br/>        
+        선택역3: <input type="text" name="station_option3"><br/>
+        
+        <input type="submit" value="Submit" name = "submit1">
+    </form>
+    
+    
+    
+    {% if nailroform %}
+         <p>이용기간 : {{nailroform.ticket_day}}</p>
+         <p>시작역 : {{nailroform.station_start}}</p>
+         <p>선택역 :{{nailroform.option_station_list}}</p>
+    
+        <p>추천코스는 {{paths[0]}} </p>
+        <p>추천코스 총 이동시간은 {{paths[1]}} 분입니다. </p>
+    
+    {% endif  %}
+    
+    <h1>이동 경로와 시간을 계산해 드립니다! 순차적으로 입력해주세요!, 최대10개 </h1>
+    <form action="{{url_for('index')}}" method="post">
+        
+        시작점: <input type="text" name="start"><br/>
+        선택역1: <input type="text" name="option1"><br/>
+        선택역2: <input type="text" name="option2"><br/>        
+        선택역3: <input type="text" name="option3"><br/>
+        선택역4: <input type="text" name="option4"><br/>
+        선택역5: <input type="text" name="option5"><br/>
+        선택역6: <input type="text" name="option6"><br/>
+        선택역7: <input type="text" name="option7"><br/>
+        선택역8: <input type="text" name="option8"><br/>
+        선택역9: <input type="text" name="option9"><br/>
+        선택역10: <input type="text" name="option10"><br/>
+        
+        <input type="submit" value="Submit" name = "submit2">
+    </form>
+    
+    {% if train_option %}
+        <p>시작역 : {{start}}</p>
+         <p>선택역 : {{train_option}}</p>
+         <p> 총비용 : {{cost}} 원</p>
+    {% endif  %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
